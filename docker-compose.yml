@@ -3,6 +3,8 @@ services:
     image: redis:7-alpine
     ports:
       - "6379:6379"
+    networks:
+      - vitalsync-net
 
   server:
     build: ./server
@@ -15,6 +17,8 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules
+    networks:
+      - vitalsync-net
 
   ml-service:
     build: ./ml-service
@@ -22,6 +26,8 @@ services:
       - "8000:8000"
     volumes:
       - ./ml-service:/app
+    networks:
+      - vitalsync-net
 
   client:
     build: ./client
@@ -30,3 +36,9 @@ services:
     volumes:
       - ./client:/app
       - /app/node_modules
+    networks:
+      - vitalsync-net
+
+networks:
+  vitalsync-net:
+    driver: bridge
