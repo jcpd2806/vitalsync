@@ -1,0 +1,10 @@
+cat > .gitignore << 'EOF'
+node_modules/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+dist/
+.venv/
+*.joblib
+EOF
